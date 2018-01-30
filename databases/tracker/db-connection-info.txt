@@ -1,4 +1,4 @@
-System-Provided:
+REVIEW System-Provided:
 {
  "VCAP_SERVICES": {
   "p-mysql": [
@@ -51,5 +51,64 @@ System-Provided:
   ],
   "users": null,
   "version": "a8de880b-1247-4f97-89a5-3c31c45eb85d"
+ }
+}
+
+
+
+
+PRODUCTION System-Provided:
+{
+ "VCAP_SERVICES": {
+  "p-mysql": [
+   {
+    "binding_name": null,
+    "credentials": {
+     "hostname": "10.0.8.18",
+     "jdbcUrl": "jdbc:mysql://10.0.8.18:3306/cf_cd38367f_9624_4897_ac9f_0c4d7a3c9e5c?user=JPPKsx3ajC7JgzZM\u0026password=Mp2t1zNM2gBp1DL3",
+     "name": "cf_cd38367f_9624_4897_ac9f_0c4d7a3c9e5c",
+     "password": "Mp2t1zNM2gBp1DL3",
+     "port": 3306,
+     "uri": "mysql://JPPKsx3ajC7JgzZM:Mp2t1zNM2gBp1DL3@10.0.8.18:3306/cf_cd38367f_9624_4897_ac9f_0c4d7a3c9e5c?reconnect=true",
+     "username": "JPPKsx3ajC7JgzZM"
+    },
+    "instance_name": "tracker-database",
+    "label": "p-mysql",
+    "name": "tracker-database",
+    "plan": "100mb",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [
+     "mysql",
+     "relational"
+    ],
+    "volume_mounts": []
+   }
+  ]
+ }
+}
+
+{
+ "VCAP_APPLICATION": {
+  "application_id": "7d08f562-a5dc-4c9c-a993-8bfb40ff6340",
+  "application_name": "pal-tracker",
+  "application_uris": [
+   "ys-pal-tracker.apps.pikes.pal.pivotal.io"
+  ],
+  "application_version": "f1fc1904-66ca-4633-93e9-ca9d72d7fd51",
+  "cf_api": "https://api.sys.pikes.pal.pivotal.io",
+  "limits": {
+   "disk": 1024,
+   "fds": 16384,
+   "mem": 1024
+  },
+  "name": "pal-tracker",
+  "space_id": "305366fa-2832-4cd3-a180-6dfc7b46ef95",
+  "space_name": "production",
+  "uris": [
+   "ys-pal-tracker.apps.pikes.pal.pivotal.io"
+  ],
+  "users": null,
+  "version": "f1fc1904-66ca-4633-93e9-ca9d72d7fd51"
  }
 }
