@@ -2,6 +2,7 @@
 using System.Linq;
 using PalTracker;
 using Xunit;
+using PalTracker;
 
 namespace PalTrackerTests
 {
