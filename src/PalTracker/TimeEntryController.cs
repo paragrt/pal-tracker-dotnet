@@ -1,39 +1,54 @@
-
-using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace PalTracker
 {
-    public class TimeEntryController : Microsoft.AspNetCore.Mvc.Controller
+    [Route("/time-entries")]
+    public class TimeEntryController : Controller
     {
-        private readonly ITimeEntryRepository _repo;
-        public TimeEntryController(ITimeEntryRepository repo)
+        private readonly ITimeEntryRepository _repository;
+
+        public TimeEntryController(ITimeEntryRepository repository)
         {
-            this._repo = repo;
+            _repository = repository;
         }
 
-        public object Create(TimeEntry toCreate)
+        [HttpPost]
+        public IActionResult Create([FromBody] TimeEntry timeEntry)
         {
-            throw new NotImplementedException();
+            var createdTimeEntry = _repository.Create(timeEntry);
+
+            return CreatedAtRoute("GetTimeEntry", new {id = createdTimeEntry.Id}, createdTimeEntry);
         }
 
-        public object List()
+        [HttpGet("{id}", Name = "GetTimeEntry")]
+        public IActionResult Read(long id)
         {
-            throw new NotImplementedException();
+            return _repository.Contains(id) ? (IActionResult) Ok(_repository.Find(id)) : NotFound();
         }
 
-        public object Update(int v, TimeEntry theUpdate)
+        [HttpGet]
+        public IActionResult List()
         {
-            throw new NotImplementedException();
+            return Ok(_repository.List());
         }
 
-        public object Delete(int v)
+        [HttpPut("{id}")]
+        public IActionResult Update(long id, [FromBody] TimeEntry timeEntry)
         {
-            throw new NotImplementedException();
+            return _repository.Contains(id) ? (IActionResult) Ok(_repository.Update(id, timeEntry)) : NotFound();
         }
 
-        public object Read(int v)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(long id)
         {
-            throw new NotImplementedException();
+            if (!_repository.Contains(id))
+            {
+                return NotFound();
+            }
+
+            _repository.Delete(id);
+
+            return NoContent();
         }
     }
 }
